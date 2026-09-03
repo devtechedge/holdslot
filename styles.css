@@ -1,0 +1,198 @@
+:root {
+  --bg: #efe7d8;
+  --ink: #1c1915;
+  --muted: #6b6458;
+  --paper: #f7f1e6;
+  --line: #d8cbb6;
+  --open: #2f6f4e;
+  --held: #b56a12;
+  --booked: #1f3d73;
+  --blocked: #9a9388;
+  --danger: #8c2f24;
+  --radius: 14px;
+  --font: "IBM Plex Sans", system-ui, sans-serif;
+  --display: "Fraunces", Georgia, serif;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  min-height: 100%;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font);
+  line-height: 1.5;
+}
+
+.page {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 28px 20px 64px;
+}
+
+.top {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: 1fr;
+  margin-bottom: 28px;
+}
+
+.mark {
+  margin: 0 0 6px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--held);
+}
+
+h1 {
+  font-family: var(--display);
+  font-size: clamp(28px, 4vw, 44px);
+  font-weight: 650;
+  line-height: 1.12;
+  margin: 0 0 10px;
+}
+
+.lede {
+  margin: 0;
+  max-width: 46ch;
+  color: var(--muted);
+}
+
+.banner {
+  align-self: start;
+  padding: 12px 14px;
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+  background: var(--paper);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.banner.ok { border-color: var(--open); color: var(--open); }
+.banner.bad { border-color: var(--danger); color: var(--danger); }
+
+.desk {
+  display: grid;
+  gap: 18px;
+}
+
+@media (min-width: 960px) {
+  .top { grid-template-columns: 1fr 280px; align-items: end; }
+  .desk { grid-template-columns: 250px 1fr 240px; align-items: start; }
+}
+
+.rail, .log-wrap, .board, .hold-card {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+.rail, .log-wrap { padding: 18px; }
+
+h2 {
+  margin: 0 0 8px;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.hint { margin: 0 0 14px; color: var(--muted); font-size: 13px; }
+
+.hold-card {
+  padding: 14px;
+  min-height: 92px;
+  margin-bottom: 12px;
+}
+
+.hold-card.empty { color: var(--muted); }
+.hold-card.active { border-color: var(--held); }
+
+.actions { display: grid; gap: 8px; }
+
+.btn {
+  font: inherit;
+  font-weight: 600;
+  border-radius: 10px;
+  padding: 12px 14px;
+  border: 1px solid var(--ink);
+  cursor: pointer;
+  min-height: 44px;
+}
+
+.btn:disabled { opacity: 0.4; cursor: not-allowed; }
+.btn.primary { background: var(--ink); color: var(--paper); }
+.btn.ghost { background: transparent; }
+
+.legend { margin: 18px 0 0; padding: 0; }
+.legend div { display: flex; gap: 8px; align-items: center; margin: 6px 0; font-size: 13px; }
+.legend dt { width: 12px; height: 12px; border-radius: 3px; }
+.legend .open { background: var(--open); }
+.legend .held { background: var(--held); }
+.legend .booked { background: var(--booked); }
+.legend .blocked { background: var(--blocked); }
+
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  margin-bottom: 10px;
+  gap: 12px;
+}
+
+label { font-size: 12px; font-weight: 600; display: grid; gap: 6px; }
+
+select {
+  font: inherit;
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  background: var(--paper);
+  min-height: 44px;
+}
+
+.clock { margin: 0; font-size: 13px; color: var(--muted); }
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(148px, 1fr));
+  gap: 8px;
+  padding: 12px;
+  min-height: 320px;
+}
+
+.slot {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 10px;
+  background: #fffdf8;
+  min-height: 88px;
+  text-align: left;
+  font: inherit;
+  cursor: pointer;
+}
+
+.slot:disabled { cursor: default; }
+.slot small { display: block; color: var(--muted); font-size: 11px; }
+.slot.open { box-shadow: inset 3px 0 0 var(--open); }
+.slot.held { box-shadow: inset 3px 0 0 var(--held); background: #fff4e4; }
+.slot.booked { box-shadow: inset 3px 0 0 var(--booked); }
+.slot.blocked { box-shadow: inset 3px 0 0 var(--blocked); opacity: 0.7; }
+
+.log {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-height: 420px;
+  overflow: auto;
+  font-size: 12px;
+}
+
+.log li {
+  border-bottom: 1px solid var(--line);
+  padding: 8px 0;
+}
+
+.log .t { color: var(--muted); }

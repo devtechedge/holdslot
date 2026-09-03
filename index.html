@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>HoldSlot — agent holds, you confirm</title>
+    <meta
+      name="description"
+      content="WebMCP booking desk. An agent can search and hold a slot. Only you can confirm."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,650&family=IBM+Plex+Sans:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect fill='%231c1915' width='32' height='32' rx='6'/%3E%3Crect fill='%23e7c37a' x='8' y='10' width='16' height='12' rx='2'/%3E%3C/svg%3E"
+    />
+  </head>
+  <body>
+    <div class="page">
+      <header class="top">
+        <div>
+          <p class="mark">HoldSlot</p>
+          <h1>Agent holds. You confirm.</h1>
+          <p class="lede">
+            Interview and clinic-style slots. The agent works on this board.
+            Commitment stays a human button.
+          </p>
+        </div>
+        <div id="webmcp-banner" class="banner unknown" role="status">
+          Checking WebMCP…
+        </div>
+      </header>
+
+      <section class="desk">
+        <aside class="rail">
+          <h2>Human gate</h2>
+          <p class="hint">
+            Tools can search and hold. They cannot book. Press confirm only if
+            the hold is the slot you want.
+          </p>
+          <div id="active-hold" class="hold-card empty">No active hold</div>
+          <div class="actions">
+            <button id="btn-confirm" class="btn primary" type="button" disabled>
+              Confirm booking
+            </button>
+            <button id="btn-release" class="btn ghost" type="button" disabled>
+              Release hold
+            </button>
+          </div>
+          <dl class="legend">
+            <div><dt class="open"></dt><dd>Open</dd></div>
+            <div><dt class="held"></dt><dd>Held (3 min)</dd></div>
+            <div><dt class="booked"></dt><dd>Confirmed</dd></div>
+            <div><dt class="blocked"></dt><dd>Already taken</dd></div>
+          </dl>
+        </aside>
+
+        <main>
+          <div class="toolbar">
+            <label>
+              Day
+              <select id="day-filter"></select>
+            </label>
+            <p id="clock" class="clock"></p>
+          </div>
+          <div id="board" class="board" aria-live="polite"></div>
+        </main>
+
+        <aside class="log-wrap">
+          <h2>Tool log</h2>
+          <p class="hint">Every WebMCP call appears here so you can see the agent.</p>
+          <ol id="log" class="log"></ol>
+        </aside>
+      </section>
+    </div>
+    <script src="app.js"></script>
+  </body>
+</html>
