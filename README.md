@@ -4,7 +4,7 @@ OpenAI [WebMCP Challenge](https://webmcp.devpost.com/) 2026.
 
 A booking desk where an **in-browser agent can search and hold a slot**, and **only the human can confirm**. The hold is visible on the same page. Confirm is a button, not a WebMCP tool.
 
-Live: after deploy, the production URL is the judge URL.
+Live: https://holdslot-cyan.vercel.app
 
 ## Why WebMCP
 
