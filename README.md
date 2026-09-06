@@ -49,3 +49,9 @@ Static HTML / CSS / JS. No backend. State is in the page so the human and the ag
 ## License
 
 MIT. See [LICENSE](LICENSE).
+
+## Security
+
+Threat model, residual risk, and operator secrets: see [SECURITY.md](SECURITY.md).
+This public deploy is a portfolio / demo surface; the GitHub repo may go private
+after review without changing the live site’s required env hygiene.
