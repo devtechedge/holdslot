@@ -7,7 +7,6 @@
   const state = {
     slots: [],
     activeHoldId: null,
-    receipts: [],
   };
 
   const el = {
@@ -210,7 +209,6 @@
       receiptId: `rcpt_${Date.now()}`,
       slot: snapshot(slot),
     };
-    state.receipts.push(receipt);
     state.activeHoldId = null;
     log("human", `Confirmed ${slot.id} · ${receipt.receiptId}`);
     render();
