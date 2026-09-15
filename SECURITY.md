@@ -1,4 +1,4 @@
-# Security — HoldSlot
+# Security - HoldSlot
 
 **Date:** 2026-09-06  
 **Context:** Public portfolio / demo deploy.
