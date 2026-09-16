@@ -1,0 +1,38 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  static-checks:
+    name: static · integrity
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Syntax check app.js
+        run: node --check app.js
+
+      - name: Validate vercel.json
+        run: node -e "JSON.parse(require('fs').readFileSync('vercel.json','utf8')); console.log('vercel.json parses')"
+
+      - name: Check referenced assets resolve
+        run: |
+          node -e "
+          const fs = require('fs');
+          const html = fs.readFileSync('index.html','utf8');
+          const refs = [...html.matchAll(/(?:src|href)=\"([^\"]+)\"/g)]
+            .map(m => m[1])
+            .filter(u => !/^(https?:|data:|#|mailto:)/.test(u));
+          const missing = refs.filter(u => !fs.existsSync(u.replace(/^\.\//,'').split('?')[0]));
+          if (missing.length) { console.error('missing local assets:', missing); process.exit(1); }
+          console.log('all ' + refs.length + ' local references resolve');
+          "
